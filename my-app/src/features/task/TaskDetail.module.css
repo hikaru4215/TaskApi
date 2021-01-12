@@ -1,0 +1,21 @@
+.details h2 {
+    color: whitesmoke;
+    font-weight: bold;
+    text-align: center;
+    margin: 18px;
+    font-family: cursive;
+}
+
+.details h3 {
+    color: whitesmoke;
+    text-align: center;
+    margin: 30px;
+    font-family: cursive;
+}
+
+.details p {
+    color: whitesmoke;
+    font-weight: 300;
+    font-size: 20px;
+    font-family: cursive;
+}

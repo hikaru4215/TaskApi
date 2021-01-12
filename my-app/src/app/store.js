@@ -1,12 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
 import loginReducer from '../features/login/loginSlice';
-
+import taskReduser from "../features/task/taskSlice";
 
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
     login: loginReducer,
+    task: taskReduser,
   },
 });

@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const apiUrl = 'http://localhost:8000/';
+const apiUrl = 'http://127.0.0.1:8000/';
 const token = localStorage.localJWT;
 
-export const fetchAsyncLogin = createAsyncThunk('login/post', async (auth) => {
+export const fetchAsyncLogin = createAsyncThunk("login/post", async (auth) => {
     const res = await axios.post(`${apiUrl}authen/jwt/create`, auth, {
         headers: {
             "Content-Type": "application/json",
@@ -13,17 +13,20 @@ export const fetchAsyncLogin = createAsyncThunk('login/post', async (auth) => {
     return res.data;
 });
 
-export const fetchAsyncRegister = createAsyncThunk('login/register', async (auth) => {
-    const res = await axios.post(`${apiUrl}taskapi/register`, auth, {
+export const fetchAsyncRegister = createAsyncThunk(
+    "login/register",
+    async (auth) => {
+        const res = await axios.post(`${apiUrl}taskapi/register/`, auth, {
         headers: {
             "Content-Type": "application/json",
         },
     });
     return res.data;
-});
+    }
+);
 
 export const fetchAsyncProf = createAsyncThunk('login/get', async () => {
-    const res = await axios.get(`${apiUrl}taskapi/myself`, {
+    const res = await axios.get(`${apiUrl}taskapi/myself/`, {
         headers: {
             Authorization: `JWT ${token}`,
         },
@@ -57,8 +60,8 @@ const loginSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(fetchAsyncLogin.fulfilled, (state, action) => {
-            localStorage.setItem('localJWT', action.payload.access);
-            action.payload.access && (window.location.href = '/tasks')
+            localStorage.setItem("localJWT", action.payload.access);
+            action.payload.access && (window.location.href = "/tasks");
         });
         builder.addCase(fetchAsyncProf.fulfilled, (state, action) => {
             state.profile = action.payload;
@@ -68,6 +71,6 @@ const loginSlice = createSlice({
 
 export const { editUsername, editPassword, toggleMode } = loginSlice.actions;
 export const selectAuthen = (state) => state.login.authen;
-export const selectLoginView = (state) => state.login.isLoginView;
+export const selectIsLoginView = (state) => state.login.isLoginView;
 export const selectProfile = (state) => state.login.profile;
 export default loginSlice.reducer;

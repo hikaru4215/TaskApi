@@ -1,0 +1,7 @@
+.taskList {
+    width: 90%;
+    margin: auto;
+    max-width: 300px;
+    overflow: hidden;
+    overflow-y: auto;
+}
